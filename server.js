@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,7 +39,6 @@ app.post('/create-event', async (req, res) => {
       description,
     };
 
-    // Detecta se é evento com horário (dateTime) ou de dia inteiro (date)
     if (startDateTime && endDateTime) {
       event.start = {
         dateTime: startDateTime,
@@ -78,7 +77,7 @@ app.get('/list-events', async (req, res) => {
   try {
     const response = await calendar.events.list({
       calendarId,
-      timeMin: new Date().toISOString(), // a partir de agora
+      timeMin: new Date().toISOString(),
       maxResults: 20,
       singleEvents: true,
       orderBy: 'startTime',
