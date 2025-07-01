@@ -18,7 +18,6 @@ const calendar = google.calendar({ version: 'v3', auth });
 
 const calendarId = '5dc98724be6cf07767777187e9ac858ffa6d662d5fe1b6fd895b30c2d31ea49b@group.calendar.google.com';
 
-// Rota de teste
 app.get('/', (req, res) => {
   res.send('API do calendário funcionando!');
 });
